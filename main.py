@@ -2,7 +2,7 @@ import threading
 import keyboard
 from voice_recognition import get_voice_command
 from nlp_processing import simplify_command
-from web_automation import search_google
+from web_automation import search_google, speak_text_from_queue  # Import speak_text_from_queue
 
 # Toggle flag to track listening state
 is_listening = False
@@ -51,6 +51,10 @@ def capture_command():
     captured_command = get_voice_command()
 
 def main():
+    # Start the speech thread
+    speech_thread = threading.Thread(target=speak_text_from_queue, daemon=True)
+    speech_thread.start()
+
     print("Press 'Ctrl + ' to toggle voice command listening...")
 
     # Set up hotkey for Ctrl + ' (single quote key)
