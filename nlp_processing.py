@@ -6,7 +6,7 @@ nlp = spacy.load("en_core_web_sm")
 
 def simplify_command(command):
     # Process the command with spaCy NLP
-    doc = nlp(command.lower())
+    #doc = nlp(command.lower())
     
     # Simplify: Find the search query after "search for"
     if "search for" in command:
